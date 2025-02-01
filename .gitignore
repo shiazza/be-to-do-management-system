@@ -1,5 +1,11 @@
-#Enviorment Variables
+# Enviorment Variables
 .env
 
-#Node Modules
+# Node Modules
 node_modules
+
+# Eslint Config
+.eslintrc.json
+
+# Prettier Config
+.prettierrc.json
