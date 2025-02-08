@@ -1,11 +1,16 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Import DB Connection
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var taskRouter = require('./routes/task');
+var usertaskRouter = require('./routes/usertask');
 
 var app = express();
 
@@ -19,8 +24,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Define routes
+// Greeting API
 app.use('/', indexRouter);
+
+// Users API
 app.use('/users', usersRouter);
+
+// Task API
+app.use('/task', taskRouter);
+
+// UserTask API
+app.use('/user-task', usertaskRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,8 +52,6 @@ app.use(function (err, req, res) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-module.exports = app;
 
 // Set port
 const port = process.env.APP_PORT || 4000;
