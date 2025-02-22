@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-// const bcrypt = require('bcrypt');
-// con  st { stringify } = require('jade/lib/utils');
 
 // Get All Tasks
 router.get('/get-all', async function (req, res) {

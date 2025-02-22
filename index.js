@@ -9,7 +9,7 @@ var logger = require('morgan');
 // Import DB Connection
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var taskRouter = require('./routes/task');
+var taskRouter = require('./routes/tasks');
 var usertaskRouter = require('./routes/usertask');
 
 var app = express();
@@ -32,7 +32,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // Task API
-app.use('/task', taskRouter);
+app.use('/tasks', taskRouter);
 
 // UserTask API
 app.use('/user-task', usertaskRouter);
@@ -56,9 +56,14 @@ app.use(function (err, req, res) {
 // Set port
 const port = process.env.APP_PORT || 4000;
 
-// Start server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Check Env
+const env = process.env.ENV_TYPE || 'production';
+
+if (env === 'development') {
+  // Start server
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
 
 module.exports = app;
