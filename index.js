@@ -11,7 +11,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var taskRouter = require('./routes/tasks');
 var usertaskRouter = require('./routes/userTask');
-
 var app = express();
 
 app.use(logger('dev'));
